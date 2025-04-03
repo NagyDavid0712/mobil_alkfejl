@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.login_button);
         switchToRegistrationView = findViewById(R.id.switch_to_registration_view);
 
+
         switchToRegistrationView.setOnClickListener(new ImageView.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -29,6 +30,15 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                finish();
+            }
+        });
+
     }
 
 }
