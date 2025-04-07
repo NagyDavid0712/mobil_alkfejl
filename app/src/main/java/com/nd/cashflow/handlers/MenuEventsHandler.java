@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.nd.cashflow.CryptoFragment;
 import com.nd.cashflow.HomeFragment;
 import com.nd.cashflow.R;
+import com.nd.cashflow.StockFragment;
 
 public class MenuEventsHandler implements View.OnClickListener {
 
@@ -30,6 +31,8 @@ public class MenuEventsHandler implements View.OnClickListener {
             selectedFragment = new HomeFragment();
         } else if (view.getId() == R.id.menu_bitcoin) {
             selectedFragment = new CryptoFragment();
+        } else if (view.getId() == R.id.menu_stock) {
+            selectedFragment = new StockFragment();
         }
 
         if (selectedFragment != null) {
