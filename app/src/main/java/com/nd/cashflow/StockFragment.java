@@ -11,6 +11,7 @@ import android.widget.GridLayout;
 import android.widget.ScrollView;
 
 import com.nd.cashflow.components.CompanyCard;
+import com.nd.cashflow.handlers.OpenStockDescriptionPageEventHandler;
 
 public class StockFragment extends Fragment {
 
@@ -21,7 +22,9 @@ public class StockFragment extends Fragment {
         GridLayout companyCardsContainer = view.findViewById(R.id.company_cards_container);
 
         for (int i = 0; i < 20; i++) {
-            companyCardsContainer.addView(new CompanyCard(getContext(), "Test " + i, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP7dkw9575sioFCg1zePcM4JSg98imdw582Q&s"));
+            CompanyCard companyCard = new CompanyCard(getContext(), "Test " + i, "https://logo.clearbit.com/spacex.com");
+            companyCard.setOnClickListener(new OpenStockDescriptionPageEventHandler());
+            companyCardsContainer.addView(companyCard);
         }
 
         return view;
