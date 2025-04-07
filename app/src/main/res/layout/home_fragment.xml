@@ -36,7 +36,6 @@
                     android:text="Üdv XYZ!"
                     android:textColor="#FBF7F7"
                     android:textSize="34sp"
-                    android:layout_margin="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
