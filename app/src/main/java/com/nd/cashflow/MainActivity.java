@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         ImageView menuItems[] = new ImageView[] {
                 findViewById(R.id.menu_home),
                 findViewById(R.id.menu_currency),
-                findViewById(R.id.menu_inflation),
                 findViewById(R.id.menu_bitcoin),
                 findViewById(R.id.menu_stock),
                 findViewById(R.id.menu_options),
