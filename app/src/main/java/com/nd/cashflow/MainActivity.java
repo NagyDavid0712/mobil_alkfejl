@@ -1,16 +1,11 @@
 package com.nd.cashflow;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.nd.cashflow.fragments.HomeFragment;
 import com.nd.cashflow.handlers.MenuEventsHandler;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         ImageView menuItems[] = new ImageView[] {
                 findViewById(R.id.menu_home),
                 findViewById(R.id.menu_currency),
-                findViewById(R.id.menu_inflation),
                 findViewById(R.id.menu_bitcoin),
                 findViewById(R.id.menu_stock),
                 findViewById(R.id.menu_options),

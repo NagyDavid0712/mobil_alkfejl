@@ -30,17 +30,19 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/menu_home"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="17dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="6dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="6dp"
                 android:clickable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/menu_currency"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/menu_home_svg" />
@@ -51,25 +53,14 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="6dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="6dp"
                 android:clickable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/menu_bitcoin"
                 app:layout_constraintStart_toEndOf="@+id/menu_home"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/menu_currency_svg" />
-
-            <ImageView
-                android:id="@+id/menu_inflation"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="6dp"
-                android:clickable="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/menu_currency"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/menu_inflation_svg" />
 
             <ImageView
                 android:id="@+id/menu_bitcoin"
@@ -77,10 +68,12 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:clickable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/menu_inflation"
+                app:layout_constraintEnd_toStartOf="@+id/menu_stock"
+                app:layout_constraintStart_toEndOf="@+id/menu_currency"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/menu_bitcoin_svg" />
 
@@ -90,9 +83,11 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="6dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="6dp"
                 android:clickable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/menu_options"
                 app:layout_constraintStart_toEndOf="@+id/menu_bitcoin"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/menu_stock_svg" />
@@ -103,9 +98,11 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="6dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="6dp"
                 android:clickable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/menu_profile"
                 app:layout_constraintStart_toEndOf="@+id/menu_stock"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/menu_options_svg" />
@@ -116,7 +113,7 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="6dp"
-                android:layout_marginEnd="17dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginBottom="6dp"
                 android:clickable="true"
                 app:layout_constraintBottom_toBottomOf="parent"

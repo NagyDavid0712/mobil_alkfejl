@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#4F959D"
     android:fillViewport="true"
-    tools:context=".HomeFragment">
+    tools:context=".fragments.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -36,7 +36,6 @@
                     android:text="Üdv XYZ!"
                     android:textColor="#FBF7F7"
                     android:textSize="34sp"
-                    android:layout_margin="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
