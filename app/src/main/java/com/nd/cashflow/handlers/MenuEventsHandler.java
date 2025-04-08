@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.nd.cashflow.CryptoFragment;
 import com.nd.cashflow.HomeFragment;
+import com.nd.cashflow.OptionsFragment;
 import com.nd.cashflow.ProfileFragment;
 import com.nd.cashflow.R;
 import com.nd.cashflow.StockFragment;
@@ -34,6 +35,8 @@ public class MenuEventsHandler implements View.OnClickListener {
             selectedFragment = new CryptoFragment();
         } else if (view.getId() == R.id.menu_stock) {
             selectedFragment = new StockFragment();
+        } else if (view.getId() == R.id.menu_options) {
+            selectedFragment = new OptionsFragment();
         } else if (view.getId() == R.id.menu_profile) {
             selectedFragment = new ProfileFragment();
         }
