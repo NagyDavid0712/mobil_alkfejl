@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+
+import com.nd.cashflow.CurrencyFragment;
 import com.nd.cashflow.CryptoFragment;
 import com.nd.cashflow.HomeFragment;
 import com.nd.cashflow.OptionsFragment;
@@ -31,6 +33,8 @@ public class MenuEventsHandler implements View.OnClickListener {
 
         if (view.getId() == R.id.menu_home) {
             selectedFragment = new HomeFragment();
+        } else if (view.getId() == R.id.menu_currency) {
+            selectedFragment = new CurrencyFragment();
         } else if (view.getId() == R.id.menu_bitcoin) {
             selectedFragment = new CryptoFragment();
         } else if (view.getId() == R.id.menu_stock) {
