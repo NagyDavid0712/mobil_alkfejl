@@ -18,19 +18,18 @@ import com.nd.cashflow.StockFragment;
 
 public class MenuEventsHandler implements View.OnClickListener {
 
-    private FragmentTransaction transaction;
     private AppCompatActivity appCompatActivity;
 
     public MenuEventsHandler(AppCompatActivity appCompatActivity) {
         this.appCompatActivity = appCompatActivity;
-        this.transaction = this.appCompatActivity.getSupportFragmentManager().beginTransaction();
+
     }
 
     @Override
     public void onClick(View view) {
         Fragment selectedFragment = null;
         //Fragment current = this.appCompatActivity.getSupportFragmentManager().findFragmentById(R.id.main_view_fragment);
-
+        FragmentTransaction transaction = this.appCompatActivity.getSupportFragmentManager().beginTransaction();
         if (view.getId() == R.id.menu_home) {
             selectedFragment = new HomeFragment();
         } else if (view.getId() == R.id.menu_currency) {
@@ -46,9 +45,9 @@ public class MenuEventsHandler implements View.OnClickListener {
         }
 
         if (selectedFragment != null) {
-            this.transaction.replace(R.id.main_view_fragment, selectedFragment);
-            this.transaction.addToBackStack(null);
-            this.transaction.commit();
+            transaction.replace(R.id.main_view_fragment, selectedFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
     }
 }
