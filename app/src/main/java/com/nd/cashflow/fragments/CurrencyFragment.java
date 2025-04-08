@@ -1,4 +1,4 @@
-package com.nd.cashflow;
+package com.nd.cashflow.fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,8 +16,8 @@ import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.nd.cashflow.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 

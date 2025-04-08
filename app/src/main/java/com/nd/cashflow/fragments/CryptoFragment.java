@@ -1,16 +1,15 @@
-package com.nd.cashflow;
+package com.nd.cashflow.fragments;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.os.Debug;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 
+import com.nd.cashflow.R;
 import com.nd.cashflow.components.CryptoCard;
 import com.nd.cashflow.handlers.OpenCryptoDescriptionPageEventHandler;
 

@@ -1,20 +1,19 @@
 package com.nd.cashflow.handlers;
 
 import android.view.View;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 
-import com.nd.cashflow.CurrencyFragment;
-import com.nd.cashflow.CryptoFragment;
-import com.nd.cashflow.HomeFragment;
-import com.nd.cashflow.OptionsFragment;
-import com.nd.cashflow.ProfileFragment;
+import com.nd.cashflow.fragments.CurrencyFragment;
+import com.nd.cashflow.fragments.CryptoFragment;
+import com.nd.cashflow.fragments.HomeFragment;
+import com.nd.cashflow.fragments.OptionsFragment;
+import com.nd.cashflow.fragments.ProfileFragment;
 import com.nd.cashflow.R;
-import com.nd.cashflow.StockFragment;
+import com.nd.cashflow.fragments.StockFragment;
 
 public class MenuEventsHandler implements View.OnClickListener {
 

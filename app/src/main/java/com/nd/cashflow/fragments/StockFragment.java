@@ -1,4 +1,4 @@
-package com.nd.cashflow;
+package com.nd.cashflow.fragments;
 
 import android.os.Bundle;
 
@@ -8,8 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
-import android.widget.ScrollView;
 
+import com.nd.cashflow.R;
 import com.nd.cashflow.components.CompanyCard;
 import com.nd.cashflow.handlers.OpenStockDescriptionPageEventHandler;
 
