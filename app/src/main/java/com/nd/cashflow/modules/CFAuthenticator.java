@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.google.firebase.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.nd.cashflow.LoginActivity;
@@ -18,6 +19,8 @@ public class CFAuthenticator {
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseDatabase mDatabase = FirebaseDatabase.getInstance("https://mobil-alkfejl-db-default-rtdb.europe-west1.firebasedatabase.app");
+
+    private CFSession session = CFSession.getInstance();
 
     private Activity activity;
     public CFAuthenticator(Activity _activity) {
@@ -30,7 +33,19 @@ public class CFAuthenticator {
                    if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
 
-                       Toast.makeText(activity, "Sikeres bejelentkezés!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, "Sikeres bejelentkezés!", Toast.LENGTH_SHORT).show();
+
+
+                        DatabaseReference ref = mDatabase.getReference("users").child(user.getUid());
+
+                        ref.get().addOnCompleteListener(task1 -> {
+                            DataSnapshot snapshot = task1.getResult();
+                            String fName = snapshot.child("fName").getValue(String.class);
+                            String sName = snapshot.child("sName").getValue(String.class);
+                            String eemail = snapshot.child("email").getValue(String.class);
+
+                            session.setSessionObject(new User(fName, sName, eemail));
+                        });
 
                         activity.startActivity(new Intent(activity, MainActivity.class));
                         activity.finish();
