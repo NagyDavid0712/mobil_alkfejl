@@ -3,6 +3,7 @@ package com.nd.cashflow.modules;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.firebase.Firebase;
@@ -45,10 +46,10 @@ public class CFAuthenticator {
                             String eemail = snapshot.child("email").getValue(String.class);
 
                             session.setSessionObject(new User(fName, sName, eemail));
-                        });
 
-                        activity.startActivity(new Intent(activity, MainActivity.class));
-                        activity.finish();
+                            activity.startActivity(new Intent(activity, MainActivity.class));
+                            activity.finish();
+                        });
                    } else {
                        Toast.makeText(activity, "Sikertelen bejelentkezés! Hibás e-mail vagy jelszó", Toast.LENGTH_SHORT).show();
                    }
