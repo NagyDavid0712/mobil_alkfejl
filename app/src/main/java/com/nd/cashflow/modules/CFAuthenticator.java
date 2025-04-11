@@ -17,7 +17,8 @@ import com.nd.cashflow.model.User;
 public class CFAuthenticator {
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
+    private FirebaseDatabase mDatabase = FirebaseDatabase.getInstance("https://mobil-alkfejl-db-default-rtdb.europe-west1.firebasedatabase.app");
+
     private Activity activity;
     public CFAuthenticator(Activity _activity) {
         activity = _activity;
@@ -29,12 +30,12 @@ public class CFAuthenticator {
                    if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
 
-                       Toast.makeText(null, "Sikeres bejelentkezés!", Toast.LENGTH_SHORT).show();
+                       Toast.makeText(activity, "Sikeres bejelentkezés!", Toast.LENGTH_SHORT).show();
 
                         activity.startActivity(new Intent(activity, MainActivity.class));
                         activity.finish();
                    } else {
-                       Toast.makeText(null, "Sikertelen bejelentkezés! Hibás e-mail vagy jelszó", Toast.LENGTH_SHORT).show();
+                       Toast.makeText(activity, "Sikertelen bejelentkezés! Hibás e-mail vagy jelszó", Toast.LENGTH_SHORT).show();
                    }
                 });
     }

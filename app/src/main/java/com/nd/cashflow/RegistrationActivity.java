@@ -29,6 +29,15 @@ public class RegistrationActivity extends AppCompatActivity {
         switchToLoginView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
+                finish();
+            }
+        });
+
+
+        registrationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 TextView fName = findViewById(R.id.reg_first_name_input);
                 TextView sName = findViewById(R.id.reg_second_name_input);
                 TextView email = findViewById(R.id.reg_email_input);
@@ -36,9 +45,6 @@ public class RegistrationActivity extends AppCompatActivity {
                 TextView password_again = findViewById(R.id.reg_password_again_input);
 
                 cfa.registrateUser(fName.getText().toString(), sName.getText().toString(), email.getText().toString(), password.getText().toString());
-
-                //startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
-                //finish();
             }
         });
     }
