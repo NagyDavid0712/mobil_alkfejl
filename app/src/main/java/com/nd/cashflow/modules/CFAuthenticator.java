@@ -8,12 +8,16 @@ import android.widget.Toast;
 import com.google.firebase.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.nd.cashflow.LoginActivity;
 import com.nd.cashflow.MainActivity;
+import com.nd.cashflow.model.User;
 
 public class CFAuthenticator {
 
-    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
     private Activity activity;
     public CFAuthenticator(Activity _activity) {
         activity = _activity;
@@ -35,8 +39,28 @@ public class CFAuthenticator {
                 });
     }
 
-    public void registrateUser() {
+    public void registrateUser(String fName, String sName, String email, String password) {
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(activity, task -> {
+                   FirebaseUser user = mAuth.getCurrentUser();
 
+                   if (user != null) {
+                       DatabaseReference userRef = mDatabase.getReference("users").child(user.getUid());
+
+                       User newUser = new User(fName, sName, email);
+
+                       userRef.setValue(newUser).addOnCompleteListener(task1 -> {
+                          if (task1.isSuccessful()) {
+                              Toast.makeText(activity, "Sikeres regisztráció! Jelentkezz be!", Toast.LENGTH_SHORT).show();
+
+                              activity.startActivity(new Intent(activity, LoginActivity.class));
+                              activity.finish();
+                          } else {
+                              Toast.makeText(activity, "Hiba történt az adatok mentése közben!", Toast.LENGTH_SHORT).show();
+                          }
+                       });
+                   }
+                });
     }
 
 }
