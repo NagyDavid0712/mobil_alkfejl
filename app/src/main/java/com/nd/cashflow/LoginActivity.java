@@ -52,8 +52,6 @@ public class LoginActivity extends AppCompatActivity {
                 String emailError = CFFieldsChecker.checkEmailField(email);
                 String passwordError = CFFieldsChecker.checkPasswordField(password);
 
-                Log.d("asd", email);
-                Log.d("asd2", password);
                 if (emailError != null && passwordError != null) {
                     InputFieldsErrorPopup.showPopup(view, new String[] { emailError, passwordError });
                 } else {
