@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "910798860710",
+    "project_id": "mobil-alkfejl-db",
+    "storage_bucket": "mobil-alkfejl-db.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:910798860710:android:38723c3ed79651646e5f67",
+        "android_client_info": {
+          "package_name": "com.nd.cashflow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXch-9T-EK0RQorn8ZdKIyBjPXItp-ceY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
