@@ -3,6 +3,7 @@ package com.nd.cashflow.model;
 public class Crypto {
     private String id;
     private String symbol;
+    private String name;
     private String image;
     private double current_price;
     private double high_24h;
@@ -64,4 +65,10 @@ public class Crypto {
     public void setLast_updated(String last_updated) {
         this.last_updated = last_updated;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() { return this.name; }
 }
