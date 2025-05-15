@@ -12,6 +12,11 @@ import android.widget.GridLayout;
 import com.nd.cashflow.R;
 import com.nd.cashflow.components.CompanyCard;
 import com.nd.cashflow.handlers.OpenStockDescriptionPageEventHandler;
+import com.nd.cashflow.model.Company;
+import com.nd.cashflow.modules.CFApiWrapper;
+import com.nd.cashflow.modules.CFDataCompanyCallback;
+
+import java.util.List;
 
 public class StockFragment extends Fragment {
 
@@ -21,11 +26,27 @@ public class StockFragment extends Fragment {
 
         GridLayout companyCardsContainer = view.findViewById(R.id.company_cards_container);
 
-        for (int i = 0; i < 20; i++) {
+        CFApiWrapper.getInstance().getCompanys(new CFDataCompanyCallback() {
+            @Override
+            public void onDataReady(List<Company> data) {
+                data.forEach(x -> {
+                    CompanyCard companyCard = new CompanyCard(getContext(), x.getName(), x.getImage());
+                    companyCard.setOnClickListener(new OpenStockDescriptionPageEventHandler());
+                    companyCardsContainer.addView(companyCard);
+                });
+            }
+
+            @Override
+            public void onError(Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        /*for (int i = 0; i < 20; i++) {
             CompanyCard companyCard = new CompanyCard(getContext(), "Test " + i, "https://logo.clearbit.com/spacex.com");
             companyCard.setOnClickListener(new OpenStockDescriptionPageEventHandler());
             companyCardsContainer.addView(companyCard);
-        }
+        }*/
 
         return view;
     }
