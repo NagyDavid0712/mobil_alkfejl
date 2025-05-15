@@ -3,29 +3,23 @@ package com.nd.cashflow.model;
 public class Company {
 
     private String name;
-    private String symbol;
     private String country;
     private String exchange;
-    private String url;
-    private String industry;
-    private String image;
+    private String weburl;
+    private String finnhubIndustry;
+    private String logo;
 
-    public Company(String name, String symbol, String country, String exchange, String url, String industry, String image) {
+    public Company(String name, String symbol, String country, String exchange, String weburl, String finnhubIndustry, String logo) {
         this.name = name;
-        this.symbol = symbol;
         this.country = country;
         this.exchange = exchange;
-        this.url = url;
-        this.industry = industry;
-        this.image = image;
+        this.weburl = weburl;
+        this.finnhubIndustry = finnhubIndustry;
+        this.logo = logo;
     }
 
     public String getName() {
         return name;
-    }
-
-    public String getSymbol() {
-        return symbol;
     }
 
     public String getCountry() {
@@ -36,15 +30,39 @@ public class Company {
         return exchange;
     }
 
-    public String getUrl() {
-        return url;
+    public String getWeburl() {
+        return weburl;
     }
 
-    public String getIndustry() {
-        return industry;
+    public String getFinnhubIndustry() {
+        return finnhubIndustry;
     }
 
-    public String getImage() {
-        return image;
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setExchange(String exchange) {
+        this.exchange = exchange;
+    }
+
+    public void setWeburl(String weburl) {
+        this.weburl = weburl;
+    }
+
+    public void setFinnhubIndustry(String finnhubIndustry) {
+        this.finnhubIndustry = finnhubIndustry;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 }

@@ -2,21 +2,34 @@ package com.nd.cashflow.modules;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.PixelCopy;
 
+import androidx.annotation.NonNull;
+
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 import com.nd.cashflow.model.Company;
 import com.nd.cashflow.model.Crypto;
 
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 import kotlin.NotImplementedError;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.Response;
 import yahoofinance.Stock;
 import yahoofinance.YahooFinance;
 import java.util.AbstractMap.*;
 import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Logger;
 
 public class CFApiWrapper {
 
@@ -46,8 +59,10 @@ public class CFApiWrapper {
     );
 
     private static CFApiWrapper instance;
-
-    private CFApiWrapper() {  }
+    private OkHttpClient client;
+    private CFApiWrapper() {
+        client = new OkHttpClient();
+    }
 
     public static CFApiWrapper getInstance() {
         if (instance == null) {
@@ -62,13 +77,42 @@ public class CFApiWrapper {
     }
 
     public void getCompanys(CFDataCompanyCallback callback) {
+        ArrayList<Company> res = new ArrayList<>();
+        int totalRequest = tickers.size();
+        AtomicInteger completedRequest = new AtomicInteger(0);
         for (Map.Entry<String, String> t : tickers.entrySet()) {
             Request request = new Request.Builder()
                     .url("https://finnhub.io/api/v1/stock/profile2?symbol=" + t.getKey() + "&token=" + FINNHUB_API_KEY)
                     .build();
 
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                    callback.onError(e);
+                }
 
+                @Override
+                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                    if (response.isSuccessful()) {
+                        String responseBody = response.body().string();
+                        //Log.d("anyád", responseBody);
+                        Gson gson = new Gson();
+
+                        Company c = gson.fromJson(responseBody, Company.class);
+                        //res.add(c);
+                        synchronized (res) {
+                            res.add(c);
+                        }
+                    }
+
+                    int finished = completedRequest.incrementAndGet();
+                    if (finished == totalRequest) {
+                        callback.onDataReady(res);
+                    }
+                 }
+            });
         }
+        callback.onDataReady(res);
     }
 
 }
