@@ -99,7 +99,8 @@ public class CFApiWrapper {
                     String responseBody = response.body().string();
 
                     Gson gson = new Gson();
-                    Type listType = new TypeToken<ArrayList<Crypto>>() {}.getType();
+                    Type listType = new TypeToken<ArrayList<Crypto>>() {
+                    }.getType();
 
                     callback.onDataReceived(gson.fromJson(responseBody, listType));
                 } else {
@@ -107,9 +108,9 @@ public class CFApiWrapper {
                 }
             }
         });
+    }
 
-
-    public void getCompanys(CFDataCompanyCallback callback) {
+    public void getCompanys (CFDataCompanyCallback callback){
         ArrayList<Company> res = new ArrayList<>();
         int totalRequest = tickers.size();
         AtomicInteger completedRequest = new AtomicInteger(0);
@@ -142,11 +143,11 @@ public class CFApiWrapper {
                     if (finished == totalRequest) {
                         callback.onDataReady(res);
                     }
-                 }
+                }
             });
         }
-        callback.onDataReady(res);
 
     }
 
 }
+
