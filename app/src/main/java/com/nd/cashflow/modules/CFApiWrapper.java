@@ -1,44 +1,70 @@
 package com.nd.cashflow.modules;
 
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+import android.view.PixelCopy;
+
+import androidx.annotation.NonNull;
+
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 import com.nd.cashflow.model.Company;
 import com.nd.cashflow.model.Crypto;
 
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 import kotlin.NotImplementedError;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import yahoofinance.Stock;
+import yahoofinance.YahooFinance;
+import java.util.AbstractMap.*;
+import java.util.Map;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Logger;
 
 public class CFApiWrapper {
 
     private String COINGECKO_API_KEY = "CG-XkaYUd8MLTwDHdSsWShbQTUc";
-    String[] tickers = {
-            "AAPL",        // Apple Inc.
-            "MSFT",        // Microsoft Corp.
-            "2222.SR",     // Saudi Aramco
-            "GOOGL",       // Alphabet Inc.
-            "AMZN",        // Amazon.com Inc.
-            "NVDA",        // NVIDIA Corp.
-            "BRK-B",       // Berkshire Hathaway
-            "META",        // Meta Platforms
-            "TSLA",        // Tesla Inc.
-            "TSM",         // Taiwan Semiconductor
-            "LLY",         // Eli Lilly & Co.
-            "JNJ",         // Johnson & Johnson
-            "JPM",         // JPMorgan Chase
-            "XOM",         // ExxonMobil
-            "V",           // Visa Inc.
-            "WMT",         // Walmart
-            "005930.KS",   // Samsung Electronics
-            "NESN.SW",     // Nestlé
-            "0700.HK",     // Tencent
-            "MC.PA"        // LVMH
-    };
+    private String FINNHUB_API_KEY = "d0j196pr01ql09hpgqr0d0j196pr01ql09hpgqrg";
+    private Map<String, String> tickers = Map.ofEntries(
+            new SimpleEntry<>("AAPL", "apple.com"),
+            new SimpleEntry<>("MSFT", "microsoft.com"),
+            new SimpleEntry<>("2222.SR", "aramco.com"),
+            new SimpleEntry<>("GOOGL", "abc.xyz"),
+            new SimpleEntry<>("AMZN", "amazon.com"),
+            new SimpleEntry<>("NVDA", "nvidia.com"),
+            new SimpleEntry<>("BRK-B", "berkshirehathaway.com"),
+            new SimpleEntry<>("META", "meta.com"),
+            new SimpleEntry<>("TSLA", "tesla.com"),
+            new SimpleEntry<>("TSM", "tsmc.com"),
+            new SimpleEntry<>("LLY", "lilly.com"),
+            new SimpleEntry<>("JNJ", "jnj.com"),
+            new SimpleEntry<>("JPM", "jpmorganchase.com"),
+            new SimpleEntry<>("XOM", "corporate.exxonmobil.com"),
+            new SimpleEntry<>("V", "visa.com"),
+            new SimpleEntry<>("WMT", "walmart.com"),
+            new SimpleEntry<>("005930.KS", "samsung.com"),
+            new SimpleEntry<>("NESN.SW", "nestle.com"),
+            new SimpleEntry<>("0700.HK", "tencent.com"),
+            new SimpleEntry<>("MC.PA", "lvmh.com")
+    );
 
     private static CFApiWrapper instance;
+    private OkHttpClient client;
+    private CFApiWrapper() {
+        client = new OkHttpClient();
+    }
 
-    private CFApiWrapper() {  }
-
-    public CFApiWrapper getInstance() {
+    public static CFApiWrapper getInstance() {
         if (instance == null) {
             instance = new CFApiWrapper();
         }
@@ -50,6 +76,43 @@ public class CFApiWrapper {
         return null;
     }
 
-    public ArrayList<Company> getCompanys() { return null; }
+    public void getCompanys(CFDataCompanyCallback callback) {
+        ArrayList<Company> res = new ArrayList<>();
+        int totalRequest = tickers.size();
+        AtomicInteger completedRequest = new AtomicInteger(0);
+        for (Map.Entry<String, String> t : tickers.entrySet()) {
+            Request request = new Request.Builder()
+                    .url("https://finnhub.io/api/v1/stock/profile2?symbol=" + t.getKey() + "&token=" + FINNHUB_API_KEY)
+                    .build();
+
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                    callback.onError(e);
+                }
+
+                @Override
+                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                    if (response.isSuccessful()) {
+                        String responseBody = response.body().string();
+                        //Log.d("anyád", responseBody);
+                        Gson gson = new Gson();
+
+                        Company c = gson.fromJson(responseBody, Company.class);
+                        //res.add(c);
+                        synchronized (res) {
+                            res.add(c);
+                        }
+                    }
+
+                    int finished = completedRequest.incrementAndGet();
+                    if (finished == totalRequest) {
+                        callback.onDataReady(res);
+                    }
+                 }
+            });
+        }
+        callback.onDataReady(res);
+    }
 
 }

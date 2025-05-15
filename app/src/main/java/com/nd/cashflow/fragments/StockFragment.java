@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,11 @@ import android.widget.GridLayout;
 import com.nd.cashflow.R;
 import com.nd.cashflow.components.CompanyCard;
 import com.nd.cashflow.handlers.OpenStockDescriptionPageEventHandler;
+import com.nd.cashflow.model.Company;
+import com.nd.cashflow.modules.CFApiWrapper;
+import com.nd.cashflow.modules.CFDataCompanyCallback;
+
+import java.util.List;
 
 public class StockFragment extends Fragment {
 
@@ -20,12 +26,24 @@ public class StockFragment extends Fragment {
         View view = inflater.inflate(R.layout.stock_fragment, container, false);
 
         GridLayout companyCardsContainer = view.findViewById(R.id.company_cards_container);
+        CFApiWrapper Apiinstance = CFApiWrapper.getInstance();
+        Apiinstance.getCompanys(new CFDataCompanyCallback() {
+            @Override
+            public void onDataReady(List<Company> data) {
+                getActivity().runOnUiThread(() -> {
+                    data.forEach(x -> {
+                        CompanyCard companyCard = new CompanyCard(getContext(), x.getName(), x.getLogo());
+                        companyCard.setOnClickListener(new OpenStockDescriptionPageEventHandler());
+                        companyCardsContainer.addView(companyCard);
+                    });
+                });
+            }
 
-        for (int i = 0; i < 20; i++) {
-            CompanyCard companyCard = new CompanyCard(getContext(), "Test " + i, "https://logo.clearbit.com/spacex.com");
-            companyCard.setOnClickListener(new OpenStockDescriptionPageEventHandler());
-            companyCardsContainer.addView(companyCard);
-        }
+            @Override
+            public void onError(Exception ex) {
+                ex.printStackTrace();
+            }
+        });
 
         return view;
     }
