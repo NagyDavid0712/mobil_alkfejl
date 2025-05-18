@@ -2,6 +2,7 @@ package com.nd.cashflow.fragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 
+import com.nd.cashflow.CryptoDataFragment;
 import com.nd.cashflow.R;
 import com.nd.cashflow.components.CryptoCard;
 import com.nd.cashflow.handlers.OpenCryptoDescriptionPageEventHandler;
@@ -20,6 +22,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CryptoFragment extends Fragment {
+
+    private AppCompatActivity appCompatActivity;
+
+    public CryptoFragment(AppCompatActivity appCompatActivity) {
+        this.appCompatActivity = appCompatActivity;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,7 +44,7 @@ public class CryptoFragment extends Fragment {
                 getActivity().runOnUiThread(() -> {
                     data.forEach(x -> {
                         CryptoCard card = new CryptoCard(getContext(), x.getName(), x.getImage());
-                        card.setOnClickListener(new OpenCryptoDescriptionPageEventHandler());
+                        card.setOnClickListener(new OpenCryptoDescriptionPageEventHandler(appCompatActivity, x));
                         cryptoCardsContainer.addView(card);
                     });
                 });
