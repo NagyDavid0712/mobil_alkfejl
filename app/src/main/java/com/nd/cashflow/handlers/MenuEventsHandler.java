@@ -15,13 +15,24 @@ import com.nd.cashflow.fragments.ProfileFragment;
 import com.nd.cashflow.R;
 import com.nd.cashflow.fragments.StockFragment;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MenuEventsHandler implements View.OnClickListener {
 
     private AppCompatActivity appCompatActivity;
 
+    private Map<Integer, Fragment> menuItems;
+
     public MenuEventsHandler(AppCompatActivity appCompatActivity) {
         this.appCompatActivity = appCompatActivity;
-
+        menuItems = new HashMap<Integer, Fragment>();
+        menuItems.put(R.id.menu_home, new HomeFragment());
+        menuItems.put(R.id.menu_currency, new CurrencyFragment());
+        menuItems.put(R.id.menu_bitcoin, new CryptoFragment());
+        menuItems.put(R.id.menu_stock, new StockFragment());
+        menuItems.put(R.id.menu_options, new OptionsFragment());
+        menuItems.put(R.id.menu_profile, new ProfileFragment());
     }
 
     @Override
@@ -29,7 +40,7 @@ public class MenuEventsHandler implements View.OnClickListener {
         Fragment selectedFragment = null;
         //Fragment current = this.appCompatActivity.getSupportFragmentManager().findFragmentById(R.id.main_view_fragment);
         FragmentTransaction transaction = this.appCompatActivity.getSupportFragmentManager().beginTransaction();
-        if (view.getId() == R.id.menu_home) {
+        /*if (view.getId() == R.id.menu_home) {
             selectedFragment = new HomeFragment();
         } else if (view.getId() == R.id.menu_currency) {
             selectedFragment = new CurrencyFragment();
@@ -41,8 +52,10 @@ public class MenuEventsHandler implements View.OnClickListener {
             selectedFragment = new OptionsFragment();
         } else if (view.getId() == R.id.menu_profile) {
             selectedFragment = new ProfileFragment();
-        }
+        }*/
 
+        selectedFragment = menuItems.get(view.getId());
+        
         if (selectedFragment != null) {
             transaction.replace(R.id.main_view_fragment, selectedFragment);
             transaction.addToBackStack(null);

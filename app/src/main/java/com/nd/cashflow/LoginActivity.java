@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
                 //TextView email = findViewById(R.id.email_input);
                 //TextView password = findViewById(R.id.password_input);
 
+
                 String email = ((TextView) findViewById(R.id.email_input)).getText().toString();
                 String password = ((TextView) findViewById(R.id.password_input)).getText().toString();
 
@@ -57,7 +58,8 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     cfa.loginUser(email, password);
                 }
-
+                //
+                //
                 //startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 //finish();
             }
