@@ -2,6 +2,7 @@ package com.nd.cashflow.fragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -21,6 +22,12 @@ import java.util.List;
 
 public class StockFragment extends Fragment {
 
+    private AppCompatActivity appCompatActivity;
+
+    public StockFragment(AppCompatActivity appCompatActivity) {
+        this.appCompatActivity = appCompatActivity;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.stock_fragment, container, false);
@@ -33,7 +40,7 @@ public class StockFragment extends Fragment {
                 getActivity().runOnUiThread(() -> {
                     data.forEach(x -> {
                         CompanyCard companyCard = new CompanyCard(getContext(), x.getName(), x.getLogo());
-                        companyCard.setOnClickListener(new OpenStockDescriptionPageEventHandler());
+                        companyCard.setOnClickListener(new OpenStockDescriptionPageEventHandler(appCompatActivity, x));
                         companyCardsContainer.addView(companyCard);
                     });
                 });
