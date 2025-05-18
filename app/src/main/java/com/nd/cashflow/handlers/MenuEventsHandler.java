@@ -29,7 +29,7 @@ public class MenuEventsHandler implements View.OnClickListener {
         menuItems = new HashMap<Integer, Fragment>();
         menuItems.put(R.id.menu_home, new HomeFragment());
         menuItems.put(R.id.menu_currency, new CurrencyFragment());
-        menuItems.put(R.id.menu_bitcoin, new CryptoFragment());
+        menuItems.put(R.id.menu_bitcoin, new CryptoFragment(appCompatActivity));
         menuItems.put(R.id.menu_stock, new StockFragment());
         menuItems.put(R.id.menu_options, new OptionsFragment());
         menuItems.put(R.id.menu_profile, new ProfileFragment());
