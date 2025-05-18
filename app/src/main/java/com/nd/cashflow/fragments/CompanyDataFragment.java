@@ -1,4 +1,4 @@
-package com.nd.cashflow;
+package com.nd.cashflow.fragments;
 
 import android.os.Bundle;
 
@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.nd.cashflow.R;
 import com.nd.cashflow.model.Company;
 
 
