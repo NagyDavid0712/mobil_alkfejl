@@ -47,15 +47,15 @@
             tools:src="@drawable/menu_profile_svg" />
 
         <Button
-            android:id="@+id/change_profile_picture_button"
-            android:layout_width="150dp"
+            android:id="@+id/change_profile_data"
+            android:layout_width="210dp"
             android:layout_height="50dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="24dp"
             android:background="#205781"
             android:backgroundTint="#205781"
-            android:text="Új profilkép"
+            android:text="Adatok szerkesztése"
             android:textColor="#FFFFFF"
             android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -74,7 +74,7 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/change_profile_picture_button" />
+            app:layout_constraintTop_toBottomOf="@+id/change_profile_data" />
 
         <GridLayout
             android:id="@+id/gridLayout"
