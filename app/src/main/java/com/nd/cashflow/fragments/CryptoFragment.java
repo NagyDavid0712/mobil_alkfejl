@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 
-import com.nd.cashflow.CryptoDataFragment;
 import com.nd.cashflow.R;
 import com.nd.cashflow.components.CryptoCard;
 import com.nd.cashflow.handlers.OpenCryptoDescriptionPageEventHandler;
@@ -18,7 +17,6 @@ import com.nd.cashflow.model.Crypto;
 import com.nd.cashflow.modules.CFApiWrapper;
 import com.nd.cashflow.modules.CFDataCallback;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CryptoFragment extends Fragment {
