@@ -46,35 +46,18 @@
             app:srcCompat="@drawable/menu_profile_svg"
             tools:src="@drawable/menu_profile_svg" />
 
-        <Button
-            android:id="@+id/change_profile_data"
-            android:layout_width="210dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="24dp"
-            android:background="#205781"
-            android:backgroundTint="#205781"
-            android:text="Adatok szerkesztése"
-            android:textColor="#FFFFFF"
-            android:textSize="17sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/user_profile_picture" />
-
         <TextView
             android:id="@+id/usd_to_cr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="30dp"
             android:layout_marginEnd="290dp"
             android:text="Adataim"
             android:textColor="#FFFFFF"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/change_profile_data" />
+            tools:layout_editor_absoluteY="380dp" />
 
         <GridLayout
             android:id="@+id/gridLayout"

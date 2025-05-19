@@ -50,7 +50,7 @@ public class CryptoFragment extends Fragment {
 
             @Override
             public void onError(Exception ex) {
-
+                ex.printStackTrace();
             }
         });
 
