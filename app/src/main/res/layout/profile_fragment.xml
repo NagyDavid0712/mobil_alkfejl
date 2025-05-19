@@ -51,13 +51,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="290dp"
             android:text="Adataim"
             android:textColor="#FFFFFF"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="380dp" />
+            app:layout_constraintTop_toBottomOf="@+id/user_profile_picture" />
 
         <GridLayout
             android:id="@+id/gridLayout"
