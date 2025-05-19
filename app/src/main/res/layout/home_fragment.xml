@@ -46,12 +46,12 @@
             app:layout_constraintTop_toBottomOf="@+id/frameLayout">
 
             <TextView
-                android:id="@+id/inflation_yer"
+                android:id="@+id/exchange_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:lineSpacingExtra="24sp"
-                android:text="12%"
+                android:text="Valami"
                 android:textColor="#FFFFFF"
                 android:textSize="34sp" />
         </FrameLayout>
@@ -84,9 +84,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="61dp"
-            android:layout_marginEnd="275dp"
+            android:layout_marginEnd="318dp"
             android:layout_marginBottom="20dp"
-            android:text="Éves infláció"
+            android:text="Valutád"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/frameLayout2"

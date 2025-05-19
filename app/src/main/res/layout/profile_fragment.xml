@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/eur_to_cr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -46,35 +46,18 @@
             app:srcCompat="@drawable/menu_profile_svg"
             tools:src="@drawable/menu_profile_svg" />
 
-        <Button
-            android:id="@+id/change_profile_picture_button"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="24dp"
-            android:background="#205781"
-            android:backgroundTint="#205781"
-            android:text="Új profilkép"
-            android:textColor="#FFFFFF"
-            android:textSize="17sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/user_profile_picture" />
-
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/usd_to_cr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="30dp"
             android:layout_marginEnd="290dp"
             android:text="Adataim"
             android:textColor="#FFFFFF"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/change_profile_picture_button" />
+            tools:layout_editor_absoluteY="380dp" />
 
         <GridLayout
             android:id="@+id/gridLayout"
@@ -89,7 +72,7 @@
             android:rowCount="2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7">
+            app:layout_constraintTop_toBottomOf="@+id/usd_to_cr">
 
             <TextView
                 android:id="@+id/textView18"
