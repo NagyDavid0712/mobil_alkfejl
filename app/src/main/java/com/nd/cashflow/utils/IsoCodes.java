@@ -30,6 +30,7 @@ public class IsoCodes {
 
         map.put("hu_HU", new IsoCode("HUF", "Magyar forint"));
         map.put("en_US", new IsoCode("USD", "Amerikai dollár"));
+        map.put("es_ES", new IsoCode("EUR", "Euró"));
         ISO_CODES = Collections.unmodifiableMap(map);
     }
 }
