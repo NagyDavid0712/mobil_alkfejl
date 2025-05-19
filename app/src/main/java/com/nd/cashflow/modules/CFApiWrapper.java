@@ -17,6 +17,7 @@ import com.nd.cashflow.MainActivity;
 import com.nd.cashflow.model.Company;
 
 import com.nd.cashflow.model.Crypto;
+import com.nd.cashflow.model.CurrencyExchange;
 import com.nd.cashflow.model.SimpleExchange;
 import com.nd.cashflow.utils.IsoCodes;
 
@@ -184,8 +185,8 @@ public class CFApiWrapper {
                     JsonObject root = new JsonParser().parse(responseBody).getAsJsonObject();
                     JsonObject rates = root.getAsJsonObject("conversion_rates");
 
-                    double eur = rates.get("EUR").getAsDouble();
-                    double usd = rates.get("USD").getAsDouble();
+                    double eur = 1 / rates.get("EUR").getAsDouble();
+                    double usd = 1 / rates.get("USD").getAsDouble();
 
                     callback.onDataready(new SimpleExchange(iso, name, eur, usd));
                 } else {
@@ -195,5 +196,37 @@ public class CFApiWrapper {
         });
     }
 
+    public void getCurrencyExchange(String currency, CFDataCurrencyExchangeCallback callback) {
+        String url = String.format("https://v6.exchangerate-api.com/v6/%s/latest/%s", EXCHANGERATE_API_KEY, currency);
+
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                callback.onError(e);
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String responseBody = response.body().string();
+
+                    JsonObject root = new JsonParser().parse(responseBody).getAsJsonObject();
+                    JsonObject rates = root.getAsJsonObject("conversion_rates");
+
+                    double eur = rates.get("EUR").getAsDouble();
+                    double usd = rates.get("USD").getAsDouble();
+                    double gpb = rates.get("GBP").getAsDouble();
+
+                    callback.onDataReady(new CurrencyExchange(eur, usd, gpb));
+                } else {
+                    callback.onError(new Exception("Hiba"));
+                }
+            }
+        });
+    }
 }
 
